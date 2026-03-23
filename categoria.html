@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo - Javali Coldres</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* Specific Styles for Category Page */
+        .page-header {
+            padding: 60px 0 40px;
+            background-color: var(--bg-card);
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .page-title {
+            font-size: 2rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .catalog-container {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+            margin-bottom: 80px;
+        }
+
+        .catalog-sidebar {
+            width: 250px;
+            flex-shrink: 0;
+        }
+
+        .filter-section {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 20px;
+            position: sticky;
+            top: 20px;
+        }
+
+        .filter-title {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: var(--text-main);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .filter-list li {
+            margin-bottom: 10px;
+        }
+
+        .filter-list a {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+
+        .filter-list a:hover, .filter-list a.active {
+            color: var(--accent);
+        }
+
+        .filter-list a i {
+            font-size: 1.2rem;
+        }
+
+        .catalog-grid {
+            flex: 1;
+        }
+
+        .products-grid-view {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .catalog-container {
+                flex-direction: column;
+            }
+            .catalog-sidebar {
+                width: 100%;
+                position: static;
+            }
+            .products-grid-view {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .products-grid-view {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        FRETE GRÁTIS PARA COMPRAS ACIMA DE R$399,00 EM PRODUTOS DA MARCA JAVALI COLDRES
+    </div>
+
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="logo.jpg" alt="Javali Coldres Leather Goods" class="brand-logo" style="max-height: 50px; mix-blend-mode: lighten;">
+            </a>
+
+            <div class="search-bar">
+                <input type="text" placeholder="O que você está buscando?">
+                <button type="submit" class="search-btn"><i class="ph ph-magnifying-glass"></i></button>
+            </div>
+
+            <div class="header-actions">
+                <a href="#" class="action-item">
+                    <i class="ph ph-chat-teardrop-dots"></i>
+                    <span>Atendimento</span>
+                </a>
+                <a href="#" class="action-item">
+                    <i class="ph ph-user"></i>
+                    <span>Minha conta</span>
+                </a>
+                <a href="#" class="action-item cart-btn">
+                    <div class="cart-icon">
+                        <i class="ph ph-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </div>
+                    <span>Meu carrinho</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav class="main-nav">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="categoria.html?cat=todos">Todas Categorias</a></li>
+                <li><a href="categoria.html?cat=velados">Coldre Velado</a></li>
+                <li><a href="categoria.html?cat=externos">Coldre Externo</a></li>
+                <li><a href="categoria.html?cat=acessorios">Acessórios</a></li>
+                <li><a href="categoria.html?cat=kits">Kits Premium</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <h1 class="page-title" id="cat-title">Nosso Catálogo</h1>
+            <p style="color: var(--text-muted); margin-top: 10px;">Equipamentos Forjados para a Lida.</p>
+        </div>
+    </div>
+
+    <main class="container catalog-container">
+        <!-- Sidebar Filters -->
+        <aside class="catalog-sidebar">
+            <div class="filter-section">
+                <h3 class="filter-title">Categorias</h3>
+                <ul class="filter-list">
+                    <li><a href="categoria.html?cat=todos" data-filter="todos"><i class="ph ph-caret-right"></i> Todos os Produtos</a></li>
+                    <li><a href="categoria.html?cat=velados" data-filter="velados"><i class="ph ph-caret-right"></i> Coldres Velados</a></li>
+                    <li><a href="categoria.html?cat=externos" data-filter="externos"><i class="ph ph-caret-right"></i> Coldres Externos</a></li>
+                    <li><a href="categoria.html?cat=bandoleiras" data-filter="bandoleiras"><i class="ph ph-caret-right"></i> Bandoleiras</a></li>
+                    <li><a href="categoria.html?cat=acessorios" data-filter="acessorios"><i class="ph ph-caret-right"></i> Acessórios & Cintos</a></li>
+                    <li><a href="categoria.html?cat=kits" data-filter="kits"><i class="ph ph-caret-right"></i> Kits Expedição</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Product Grid -->
+        <div class="catalog-grid">
+            <div class="products-grid-view" id="productGrid">
+                
+                <!-- Product: Bandoleira -->
+                <div class="product-card" data-category="bandoleiras">
+                    <div class="product-image" style="background-image: url('bandoleira-porta-municao.jpeg');"></div>
+                    <div class="product-info">
+                        <span class="product-category">Bandoleiras</span>
+                        <h3 class="product-title">Bandoleira Javali Signature</h3>
+                        <div class="product-price">
+                            <span class="new-price">R$ 424,90</span>
+                        </div>
+                        <span class="parcelamento">10x de R$ 42,49 s/ juros</span>
+                        <a href="https://produto.mercadolivre.com.br/MLB-6425868302-bandoleira-e-porta-cartucho-couro-artesanal-javali-_JM" target="_blank" style="text-decoration:none;"><button class="btn-buy" style="pointer-events: none;"><i class="ph ph-shopping-bag"></i> Comprar - ML</button></a>
+                    </div>
+                </div>
+
+                <!-- Product: Coldre Peito -->
+                <div class="product-card" data-category="externos">
+                    <div class="product-image" style="background-image: url('coldre-peito-revolver.jpeg');"></div>
+                    <div class="product-info">
+                        <span class="product-category">Coldres Externos</span>
+                        <h3 class="product-title">Coldre Peito para Revólver</h3>
+                        <div class="product-price"><span class="new-price">R$ 299,90</span></div>
+                        <span class="parcelamento">10x de R$ 29,99 s/ juros</span>
+                        <button class="btn-buy"><i class="ph ph-shopping-bag"></i> Comprar - ML</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="externos">
+                    <div class="product-image" style="background-image: url('coldre-peito-2.jpeg');"></div>
+                    <div class="product-info">
+                        <span class="product-category">Coldres Externos</span>
+                        <h3 class="product-title">Coldre Peito Acabamento Reforçado</h3>
+                        <div class="product-price"><span class="new-price">R$ 310,00</span></div>
+                        <span class="parcelamento">10x s/ juros</span>
+                        <button class="btn-buy"><i class="ph ph-shopping-bag"></i> Comprar - ML</button>
+                    </div>
+                </div>
+
+                <!-- Product: Cintos -->
+                <div class="product-card" data-category="acessorios">
+                    <div class="product-image" style="background-image: url('cinto-porta-cartucho.jpeg');"></div>
+                    <div class="product-info">
+                        <span class="product-category">Acessórios</span>
+                        <h3 class="product-title">Cinto de Couro com Porta Cartucho</h3>
+                        <div class="product-price"><span class="new-price">R$ 450,00</span></div>
+                        <span class="parcelamento">10x s/ juros</span>
+                        <button class="btn-buy"><i class="ph ph-shopping-bag"></i> Comprar - ML</button>
+                    </div>
+                </div>
+
+                <!-- Product: Kits -->
+                <div class="product-card" data-category="kits">
+                    <div class="product-image" style="background-image: url('cinto-porta-cartucho-2.jpeg');"></div>
+                    <div class="product-info">
+                        <span class="product-category">Kits Expedição</span>
+                        <h3 class="product-title">Kit Caça: Cinto + Coldre Tático</h3>
+                        <div class="product-price"><span class="new-price">R$ 680,00</span></div>
+                        <span class="parcelamento">10x s/ juros</span>
+                        <button class="btn-buy"><i class="ph ph-shopping-bag"></i> Comprar - ML</button>
+                    </div>
+                </div>
+
+                <!-- Product: Coldres Velados -->
+                <div class="product-card" data-category="velados">
+                    <div class="product-image" style="background-image: url('coldre-velado-preto.jpeg');"></div>
+                    <div class="product-info">
+                        <span class="product-category">Coldres Velados</span>
+                        <h3 class="product-title">Coldre Velado Preto Clássico</h3>
+                        <div class="product-price"><span class="new-price">R$ 259,90</span></div>
+                        <span class="parcelamento">6x s/ juros</span>
+                        <button class="btn-buy"><i class="ph ph-shopping-bag"></i> Comprar - ML</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="velados">
+                    <div class="product-image" style="background-image: url('coldre-velado-marrom.jpeg');"></div>
+                    <div class="product-info">
+                        <span class="product-category">Coldres Velados</span>
+                        <h3 class="product-title">Coldre Velado Marrom Premium</h3>
+                        <div class="product-price"><span class="new-price">R$ 279,90</span></div>
+                        <span class="parcelamento">6x s/ juros</span>
+                        <button class="btn-buy"><i class="ph ph-shopping-bag"></i> Comprar - ML</button>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="velados">
+                    <div class="product-image" style="background-image: url('coldre-marrom-velado.jpeg');"></div>
+                    <div class="product-info">
+                        <span class="product-category">Coldres Velados</span>
+                        <h3 class="product-title">Coldre Marrom s/ Flap</h3>
+                        <div class="product-price"><span class="new-price">R$ 239,90</span></div>
+                        <span class="parcelamento">6x s/ juros</span>
+                        <button class="btn-buy"><i class="ph ph-shopping-bag"></i> Comprar - ML</button>
+                    </div>
+                </div>
+
+                <!-- Product: Others -->
+                <div class="product-card" data-category="acessorios">
+                    <div class="product-image" style="background-image: url('porta-municao.jpeg');"></div>
+                    <div class="product-info">
+                        <span class="product-category">Acessórios</span>
+                        <h3 class="product-title">Porta Munição Rápido de Couro</h3>
+                        <div class="product-price"><span class="new-price">R$ 120,00</span></div>
+                        <span class="parcelamento">3x s/ juros</span>
+                        <button class="btn-buy"><i class="ph ph-shopping-bag"></i> Comprar - ML</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 Javali Coldres - Feita para a Lida.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
